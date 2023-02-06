@@ -1,16 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <TestPage msg="testMsg"/>
+  <img style="width:3%" alt="Vue logo" src="./assets/logo.png">
+  <ListPage/>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import TestPage from '@/components/TestPage.vue';
+import ListPage from '@/views/ListPage.vue';
 export default {
   name: 'App',
   components: {
-    //HelloWorld
-    TestPage
+    ListPage
 }
 }
 </script>
