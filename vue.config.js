@@ -9,10 +9,9 @@ module.exports = defineConfig({
   },
   devServer: {
     proxy: {
-        //proxy 요청을 보낼 api 시작 부분
-        '/api': {
+        '/*': {
             target:'http://localhost:3000',
-            changeOrigin: true,
+            changeOrigin: true
         },
     },
     //header : {'Access-Control-Allow-Origin' : '*'}

@@ -75,7 +75,7 @@ export default {
     },
     methods:{
       proxyReqTest(){
-        axios.get('/api/Test').then((res) => {
+        axios.get('/account').then((res) => {
           console.log('ProxyTest res : ', res);
         })
         .catch((error) => {
