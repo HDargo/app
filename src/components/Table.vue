@@ -10,7 +10,7 @@
                         {{ item.id }}
                     </td>
                     <td>
-                        <a :class="{disabled : !item.link}" href="/">
+                        <a :class="{disabled : !item.link}" :href="item.link">
                             {{ item.name }}
                         </a>
                     </td>
