@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <SidebarLayout></SidebarLayout>
+      <!-- <SidebarLayout></SidebarLayout> -->
       <v-card>
         <v-layout>
           <v-navigation-drawer v-model="drawer"
@@ -34,15 +34,16 @@
               <v-divider></v-divider>
 
               <v-list v-if="store.isLogin" density="compact" nav>
-                  <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
-                  <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
-                  <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
-                  <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
-                  <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout"></v-list-item>
+                <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
+                <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
+                <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+                <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
+                <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="store.DoLogout()"></v-list-item>
               </v-list>
               <v-list v-else density="compact" nav>
-                  <v-list-item prepend-icon="mdi-login" title="Login" value="login"></v-list-item>
-                  <v-list-item prepend-icon="mdi-account-plus" title="Regist" value="regist"></v-list-item>
+                <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
+                <v-list-item prepend-icon="mdi-login" title="Login" value="login" to="/login"></v-list-item>
+                <v-list-item prepend-icon="mdi-account-plus" title="Regist" value="regist" to="/regist"></v-list-item>
               </v-list>
           </v-navigation-drawer>
           <v-main style="height: 100vh;">
@@ -57,7 +58,7 @@
 <script>
 
 import axios from 'axios';
-import SidebarLayout from './components/SidebarLayout.vue';
+// import SidebarLayout from './components/SidebarLayout.vue';
 import {store} from '@/store/store';
 
 export default {
@@ -76,7 +77,7 @@ export default {
     }
   },
   components:{
-    SidebarLayout
+    // SidebarLayout
   },
   methods:{
     proxyReqTest(){
