@@ -7,8 +7,8 @@ import { Axios } from 'axios'
 
 loadFonts()
 
-const app = createApp(App)
-app.use(vuetify)
-app.use(router)
+const app = createApp(App);
+app.use(vuetify);
+app.use(router);
 app.config.globalProperties.$axios = Axios; 
-app.mount('#app')
+app.mount('#app');

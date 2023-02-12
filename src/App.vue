@@ -7,20 +7,18 @@
           <v-navigation-drawer v-model="drawer"
                                 :rail="rail"
                                 permanent
-                                absolute="true"
-                                height="100"
                                 @click="rail = false">
               <v-list-item v-if="store.isLogin"
                             :prepend-avatar="logo"
                             title="John Leider"
                             nav>
-                  <!-- login-->
+                   <!-- login status -->
                   <template v-slot:append>
                       <v-btn variant="text"
                               icon="mdi-chevron-left"
                               @click.stop="rail = !rail"></v-btn>
                   </template>
-              </v-list-item> <!-- login status -->
+              </v-list-item>
 
               <v-list-item v-else>
                   <!-- logout status -->
@@ -47,6 +45,7 @@
               </v-list>
           </v-navigation-drawer>
           <v-main style="height: 100vh;">
+            <v-btn @click="sseTest()">Click me</v-btn>
             <router-view/>
           </v-main>
         </v-layout>
@@ -63,6 +62,25 @@ import {store} from '@/store/store';
 
 export default {
   name : 'app',
+  created() {
+    // this.$sse.create('/api/sse')
+    // .on('message', (msg) => {console.info('Messge : ', msg)})
+    // .on('error', (msg) => {console.error('Error : ', msg)})
+    // .connect()
+    // .then(sse => {console.log('welcome sse : ', sse)})
+    // .catch((err) => console.error('Failed make initial connection:', err));
+    const source = new EventSource('/api/notifications/sub');
+
+    source.addEventListener('message', message => {
+      console.log('Got message', message);
+    });
+    source.addEventListener('open', message => {
+      console.log('open to server', message);
+    });
+    source.addEventListener('test', message => {
+      console.log('test to server', message);
+    });
+  },
   data () {
     return {
       drawer: true,
@@ -80,12 +98,9 @@ export default {
     // SidebarLayout
   },
   methods:{
-    proxyReqTest(){
-      axios.post('/api/account').then((res) => {
-        console.log('ProxyTest res : ', res);
-      })
-      .catch((error) => {
-        console.log('ProxyTest err : ', error);
+    async sseTest(){
+      await axios.get('/api/notifications/pub').then((res) =>{
+        console.log(res.data);
       })
     }
   }
