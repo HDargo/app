@@ -35,7 +35,6 @@
     </div>
 </template>
 <script>
-import {store} from '@/store/store'
 export default{
     name:'LoginPage',
     data: ()=>({
@@ -51,14 +50,13 @@ export default{
             v => !!v || 'Password is required',
             v => (v && v.length > 10) || 'Password must be over than 10 characters'
         ],
-        store
     }),
     methods:{
         async validate () {
-            const {valid} = await this.$refs.form.validate()
-
+            const {valid} = await this.$refs.form.validate();
             if(valid){
-                store.DoLogin();
+                this.$store.commit('doLogin');
+                this.$router.push('/');
             }
         },
         reset() {

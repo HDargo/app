@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <p>{{login}}</p>
       <!-- <SidebarLayout></SidebarLayout> -->
       <v-card>
         <v-layout>
@@ -8,7 +9,7 @@
                                 :rail="rail"
                                 permanent
                                 @click="rail = false">
-              <v-list-item v-if="store.isLogin"
+              <v-list-item v-if="login"
                             :prepend-avatar="logo"
                             title="John Leider"
                             nav>
@@ -31,12 +32,12 @@
 
               <v-divider></v-divider>
 
-              <v-list v-if="store.isLogin" density="compact" nav>
+              <v-list v-if="login" density="compact" nav>
                 <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
                 <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
                 <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
                 <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
-                <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="store.DoLogout()"></v-list-item>
+                <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="DoLogout"></v-list-item>
               </v-list>
               <v-list v-else density="compact" nav>
                 <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
@@ -45,7 +46,6 @@
               </v-list>
           </v-navigation-drawer>
           <v-main style="height: 100vh;">
-            <v-btn @click="sseTest()">Click me</v-btn>
             <router-view/>
           </v-main>
         </v-layout>
@@ -55,55 +55,30 @@
 </template>
 
 <script>
-
-import axios from 'axios';
-// import SidebarLayout from './components/SidebarLayout.vue';
-import {store} from '@/store/store';
-
 export default {
   name : 'app',
-  created() {
-    // this.$sse.create('/api/sse')
-    // .on('message', (msg) => {console.info('Messge : ', msg)})
-    // .on('error', (msg) => {console.error('Error : ', msg)})
-    // .connect()
-    // .then(sse => {console.log('welcome sse : ', sse)})
-    // .catch((err) => console.error('Failed make initial connection:', err));
-    const source = new EventSource('/api/notifications/sub');
-
-    source.addEventListener('message', message => {
-      console.log('Got message', message);
-    });
-    source.addEventListener('open', message => {
-      console.log('open to server', message);
-    });
-    source.addEventListener('test', message => {
-      console.log('test to server', message);
-    });
-  },
   data () {
     return {
-      drawer: true,
       items: [
         { title: 'Home', icon: 'mdi-home-city' },
         { title: 'My Account', icon: 'mdi-account' },
         { title: 'Users', icon: 'mdi-account-group-outline' },
       ],
+      drawer: true,
       rail: true,
-      store,
       logo:require('@/assets/logo.png')
     }
   },
-  components:{
-    // SidebarLayout
+  computed : {
+    login(){
+      return this.$store.getters.getLoggin;
+    }
   },
   methods:{
-    async sseTest(){
-      await axios.get('/api/notifications/pub').then((res) =>{
-        console.log(res.data);
-      })
+    DoLogout(){
+      this.$store.commit('doLogout');
     }
-  }
+  },
 }
 </script>
 
