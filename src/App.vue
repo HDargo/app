@@ -1,8 +1,6 @@
 <template>
   <v-app>
     <v-main>
-      <p>{{login}}</p>
-      <!-- <SidebarLayout></SidebarLayout> -->
       <v-card>
         <v-layout>
           <v-navigation-drawer v-model="drawer"
@@ -35,7 +33,7 @@
               <v-list v-if="login" density="compact" nav>
                 <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
                 <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
-                <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+                <v-list-item prepend-icon="mdi-chart-areaspline" title="Chart" value="chart" to="/Chart"></v-list-item>
                 <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
                 <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="DoLogout"></v-list-item>
               </v-list>
@@ -55,6 +53,7 @@
 </template>
 
 <script>
+
 export default {
   name : 'app',
   data () {
@@ -67,6 +66,7 @@ export default {
       drawer: true,
       rail: true,
       logo:require('@/assets/logo.png')
+      //logo:this.$store.getters.getProfileImage
     }
   },
   computed : {
@@ -77,6 +77,7 @@ export default {
   methods:{
     DoLogout(){
       this.$store.commit('doLogout');
+      this.$router.push('/');
     }
   },
 }

@@ -4,6 +4,7 @@ import MyAccount from '@/views/account/MyAccount'
 import LoginPage from '@/views/account/LoginPage'
 import RegistPage from '@/views/account/RegistPage'
 import IndexPage from '@/views/IndexPage'
+import ChartPage from '@/views/ChartPage';
 const routes = [
     {
         path: '/',
@@ -25,6 +26,10 @@ const routes = [
         path: '/regist',
         name: 'Regist',
         component: RegistPage
+    },{
+        path: '/chart',
+        name: 'Chart',
+        component: ChartPage
     }
 ]
 

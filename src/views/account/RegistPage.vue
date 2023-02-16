@@ -63,7 +63,7 @@ export default{
         async validate () {
             const {valid} = await this.$refs.form.validate();
             if(valid){
-                this.$store.commit('doLogin');
+                this.$store.commit('doRegist');
                 this.$router.push('/');
             }
         },
