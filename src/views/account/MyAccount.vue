@@ -1,6 +1,5 @@
 <template>
     <div id="MyAccount">
-        <h1>my account</h1>
         <MyProfile></MyProfile>
     </div>
 </template>

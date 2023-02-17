@@ -65,7 +65,7 @@ export default {
       ],
       drawer: true,
       rail: true,
-      logo:require('@/assets/logo.png')
+      logo:this.$store.getters.getProfileImage
       //logo:this.$store.getters.getProfileImage
     }
   },

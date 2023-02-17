@@ -4,7 +4,7 @@ import persistedstate from "vuex-persistedstate";
 const store = new Vuex.Store({
     state: {
         isLoggedIn:false,
-        profileImage : null
+        profileImage : require('@/assets/logo.png')
     },
     getters: {
         getLoggin(state){
