@@ -32,9 +32,9 @@
 
               <v-list v-if="login" density="compact" nav>
                 <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
-                <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
                 <v-list-item prepend-icon="mdi-chart-areaspline" title="Chart" value="chart" to="/Chart"></v-list-item>
                 <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
+                <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
                 <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="DoLogout"></v-list-item>
               </v-list>
               <v-list v-else density="compact" nav>

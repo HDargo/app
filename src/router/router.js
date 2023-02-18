@@ -5,6 +5,16 @@ import LoginPage from '@/views/account/LoginPage'
 import RegistPage from '@/views/account/RegistPage'
 import IndexPage from '@/views/IndexPage'
 import ChartPage from '@/views/ChartPage';
+
+import store from '@/store/store';
+
+const requireAuth = () => (to, from, next) => {
+    if (store.getters.getLoggin) {
+      return next();
+    }
+    next('/login');
+};
+
 const routes = [
     {
         path: '/',
@@ -17,7 +27,8 @@ const routes = [
     },{
         path: '/MyAccount',
         name: 'My Account',
-        component: MyAccount
+        component: MyAccount,
+        beforeEnter : requireAuth()
     },{
         path: '/login',
         name: 'Login',

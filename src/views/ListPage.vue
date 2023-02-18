@@ -1,6 +1,6 @@
 <template>
     <h1>ListPage</h1>
-    <Table :headers="header" :bodys="body"/>
+    <Table/>
 </template>
 <script>
 import Table from '@/components/Table.vue'

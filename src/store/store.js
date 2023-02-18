@@ -24,6 +24,11 @@ const store = new Vuex.Store({
         },
         doRegist(state){
             state.isLoggedIn = true;
+        },
+        changeProfile(state, profileData){
+            if(state.profileImage != null){
+                state.profileImage = profileData['profileImage'];
+            }
         }
     },
     actions: {
