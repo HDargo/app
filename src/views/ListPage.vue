@@ -1,13 +1,13 @@
 <template>
     <h1>ListPage</h1>
-    <Table/>
+    <TablePage/>
 </template>
 <script>
-import Table from '@/components/Table.vue'
+import TablePage from '@/components/Table.vue'
 export default {
     name: 'ListPage',
     components: {
-        Table
+        TablePage
     },
     data(){
         return {

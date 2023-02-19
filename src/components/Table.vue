@@ -1,12 +1,22 @@
 <template>
     <div id="TableComponent">
-        <v-data-table
-            v-model:items-per-page="itemsPerPage"
-            :headers="headers"
-            :items="desserts"
-            item-value="name"
-            class="elevation-1"
-        ></v-data-table>
+        <v-card>
+            <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+            ></v-text-field>
+            <v-data-table
+                v-model:items-per-page="itemsPerPage"
+                :headers="headers"
+                :items="desserts"
+                :search="search"
+                item-value="name"
+                class="elevation-1"
+            ></v-data-table>
+        </v-card>
     </div>
     
 </template>
@@ -19,6 +29,7 @@ export default{
     },
     data () {
         return {
+            search:'',
             itemsPerPage : 5,
             headers: [
             {
