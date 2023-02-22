@@ -71,6 +71,7 @@
                             <v-text-field
                                 label="Password"
                                 v-model="Password"
+                                hint="Enter your password to access this website"
                                 :rules="PasswordRules"
                                 hide-details="auto"
                                 :counter="100"
@@ -89,7 +90,7 @@
                 </v-row>
                 <v-row>
                     <v-card-actions class="mx-auto">
-                        <v-btn type="submit" color="primary">Save</v-btn>
+                        <v-btn type="submit" color="primary">Change</v-btn>
                     </v-card-actions>
                 </v-row>
             </v-form>
@@ -103,29 +104,29 @@ export default {
         return {
             isSelecting : false,
             preview : this.$store.getters.getProfileImage,
-            Nickname : '',
+            Nickname : this.$store.getters.getNickname,
             NameRules: [
-                //v => !!v || 'Nickname is required', 
-                //v => (v && v.length <= 15) || 'Nickname must be 15 characters or less'
+                v => !!v || 'Nickname is required', 
+                v => (v && v.length <= 15) || 'Nickname must be 15 characters or less'
             ],
-            Email : '',
+            Email : this.$store.getters.getEmail,
             EmailRules : [
-                //v => !!v || 'Email is required', 
-                //v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+                v => !!v || 'Email is required', 
+                v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
             ],
-            Desciption: '',
+            Desciption: this.$store.getters.getDesciption,
             DesciptionRules: [
-                //v => !(v && v.length >= 100) || 'Description cannot exceed 100 characters.'
+                v => !(v && v.length >= 100) || 'Description cannot exceed 100 characters.'
             ],
             Password : '',
             PasswordRules : [
-                //v => !!v || 'Password is required', 
-                //v => !(v && v.length < 8) || 'PasswordRules must be valid'
+                v => !!v || 'Password is required', 
+                v => !(v && v.length < 8) || 'PasswordRules must be valid'
             ],
             PasswordValidation : '',
             PasswordValidationRules : [
-                //v => !!v || 'Password Validation is required', 
-                //v => !(v && v != this.Password) || 'Password Validation must be valid'
+                v => !!v || 'Password Validation is required', 
+                v => !(v && v != this.Password) || 'Password Validation must be valid'
             ],
         }
     },

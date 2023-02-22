@@ -17,14 +17,14 @@
     "vue-chart": "^2.0.0",
     "vue-chartjs": "^5.2.0",
     "vue-router": "^4.1.6",
-    "vuetify": "^3.1.5",
+    "vuetify": "^3.1.6",
     "vuex": "^4.1.0",
     "vuex-persistedstate": "^4.1.0",
     "webfontloader": "^1.6.28",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.0",
     "@babel/eslint-parser": "^7.19.1",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",

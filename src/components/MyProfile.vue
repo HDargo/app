@@ -24,22 +24,45 @@
                     {{ form.Nickname }}
                 </v-card-title>
                 <v-card-subtitle>
-                    {{ form.Description }}
+                    {{ form.Desciption }}
                 </v-card-subtitle>
             </v-card-title>
+            
+            <v-dialog
+                v-model="dialog"
+                width="auto"
+                class="ButtonCenter"
+            >
+                <template v-slot:activator="{props}">
+                    <v-btn
+                        color="primary"
+                        v-bind="props"
+                    >
+                        my account modify
+                    </v-btn>
+                </template>
+
+                <MyProfileModify></MyProfileModify>
+            </v-dialog>
         </v-card>
     </div>
 </template>
 <script>
+
+import MyProfileModify from '@/components/MyProfileModify.vue'
 export default {
     name:'MyProfile',
+    components:{
+        MyProfileModify
+    },
     data () {
         return {
             preview : this.$store.getters.getProfileImage,
             form : {
-                Nickname : 'Nickname',
-                Description : 'Description'
-            }
+                Nickname : this.$store.getters.getNickname,
+                Desciption : this.$store.getters.getDesciption
+            },
+            dialog : false
         }
     }
 }

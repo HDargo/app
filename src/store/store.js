@@ -4,7 +4,10 @@ import persistedstate from "vuex-persistedstate";
 const store = new Vuex.Store({
     state: {
         isLoggedIn:false,
-        profileImage : require('@/assets/logo.png')
+        profileImage : require('@/assets/logo.png'),
+        Nickname:'nananana',
+        Email:'nananana@nanana.com',
+        Desciption:'Descrrrrrr'
     },
     getters: {
         getLoggin(state){
@@ -12,6 +15,15 @@ const store = new Vuex.Store({
         },
         getProfileImage(state){
             return state.profileImage;
+        },
+        getNickname(state){
+            return state.Nickname;
+        },
+        getEmail(state){
+            return state.Email;
+        },
+        getDesciption(state){
+            return state.Desciption;
         }
     },
     mutations: {
