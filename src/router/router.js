@@ -5,7 +5,9 @@ import LoginPage from '@/views/account/LoginPage'
 import RegistPage from '@/views/account/RegistPage'
 import IndexPage from '@/views/IndexPage'
 import ChartPage from '@/views/ChartPage';
-
+import BoardListPage from '@/views/bbs/BoardListPage'
+import Mailbox from '@/views/mailbox/MailBoxPage.vue'
+import NoteList from '@/views/note/NoteListPage.vue'
 import store from '@/store/store';
 
 const requireAuth = () => (to, from, next) => {
@@ -41,6 +43,18 @@ const routes = [
         path: '/chart',
         name: 'Chart',
         component: ChartPage
+    },{
+        path: '/boardList',
+        name: 'BoardList',
+        component: BoardListPage
+    },{
+        path: '/notelist',
+        name: 'NoteList',
+        component: NoteList
+    },{
+        path: '/mailbox',
+        name: 'Mailbox',
+        component: Mailbox
     }
 ]
 
