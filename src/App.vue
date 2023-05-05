@@ -36,7 +36,7 @@
               <v-list-item prepend-icon="mdi-view-list" title="List Test" value="list" to="/list"></v-list-item>
               <v-list-item prepend-icon="mdi-note-text-outline" title="NoteList" value="noteList" to="/noteList"></v-list-item>
               <v-list-item prepend-icon="mdi-mailbox" title="Mailbox" value="mailbox" to="/mailbox"></v-list-item>
-              <v-list-item prepend-icon="mdi-view-list" title="Test" value="Test3"></v-list-item>
+              <v-list-item prepend-icon="mdi-view-list" title="Calendar" value="calendar" to="/calendar"></v-list-item>
               <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>
               <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" @click="DoLogout"></v-list-item>
             </v-list>

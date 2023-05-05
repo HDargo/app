@@ -32,4 +32,7 @@ export default {
 }
 </script>
 <style>
+#my-chart-id{
+    width:100%;
+}
 </style>

@@ -1,4 +1,5 @@
 export const userState = {
+    
     namespace : true,
     state: {
         isLoggedIn:false,
@@ -8,36 +9,30 @@ export const userState = {
         Desciption:'Descrrrrrr'
     },
     getters: {
-        getLoggin(state){
-            return state.isLoggedIn;
-        },
-        getProfileImage(state){
-            return state.profileImage;
-        },
-        getNickname(state){
-            return state.Nickname;
-        },
-        getEmail(state){
-            return state.Email;
-        },
-        getDesciption(state){
-            return state.Desciption;
-        }
+        getLoggin: state => state.isLoggedIn,
+        getProfileImage: state => state.profileImage,
+        getNickname: state => state.Nickname,
+        getEmail: state => state.Email,
+        getDesciption: state => state.Desciption
     },
     mutations: {
-        doLogin(state){
+        doLogin: state => {
             state.profileImage = require('@/assets/logo.png')
             state.isLoggedIn = true;
+            console.log('mutation do login');
         },
-        doLogout(state){
+        doLogout: state => {
             state.isLoggedIn = false;
+            console.log('mutation do logout');
         },
-        doRegist(state){
+        doRegist: state => {
             state.isLoggedIn = true;
+            console.log('mutation do regist');
         },
-        changeProfile(state, profileData){
+        changeProfile: (state, profileData) => {
             if(state.profileImage != null){
                 state.profileImage = profileData['profileImage'];
+            console.log('mutation change profile');
             }
         }
     },
