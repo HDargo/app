@@ -9,6 +9,7 @@ import BoardListPage from '@/views/bbs/BoardListPage'
 import Mailbox from '@/views/mailbox/MailBoxPage.vue'
 import NoteList from '@/views/note/NoteListPage.vue'
 import CalendarManage from '@/views/calendar/CalendarManage.vue'
+import BoardPage from '@/views/bbs/BoardPage'
 import store from '@/store/store';
 
 const requireAuth = () => (to, from, next) => {
@@ -60,6 +61,10 @@ const routes = [
         path: '/calendar',
         name: 'CalendarManage',
         component: CalendarManage
+    }, {
+        path: '/board/:boardNo',
+        name: 'border',
+        component:BoardPage
     }
 ]
 

@@ -12,7 +12,10 @@
 <script>
 export default{
     name: 'IndexPage',
-    data(){
+    data() {
+        return {
+            
+        }
     },
     methods:{
     }

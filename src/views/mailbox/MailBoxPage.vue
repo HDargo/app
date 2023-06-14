@@ -55,7 +55,9 @@
 export default{
     name:'MailBox',
     data(){
-
+        return {
+            
+        }
     }
 }
 </script>

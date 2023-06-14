@@ -22,7 +22,9 @@
 export default{
     name:'NoteList',
     data(){
-
+        return {
+            
+        }
     }
 }
 </script>

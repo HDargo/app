@@ -1,62 +1,82 @@
 <template>
   <div>
-    <v-sheet tile height="54" class="d-flex">
+    <v-sheet tile class="d-flex">
       <v-btn icon class="ma-2" @click="prevMonth">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
-      <v-select v-model="year" :items="years" dense hide-details class="ma-5" label="연도" @update:model-value="reloadCalendar"></v-select>
-      <v-select v-model="month" :items="months" dense hide-details class="ma-5" label="월" @update:model-value="reloadCalendar"></v-select>
+      <v-select
+        v-model="year"
+        :items="years"
+        dense
+        hide-details
+        class="ma-5"
+        label="연도"
+        @update:model-value="reloadCalendar"
+      ></v-select>
+      <v-select
+        v-model="month"
+        :items="months"
+        dense
+        hide-details
+        class="ma-5"
+        label="월"
+        @update:model-value="reloadCalendar"
+      ></v-select>
       <v-btn icon class="ma-2" @click="nextMonth">
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
     </v-sheet>
-    <v-container class="pa-6">
-      <v-table>
-        <colgroup>
-            <col width="16%">
-            <col width="16%">
-            <col width="16%">
-            <col width="16%">
-            <col width="16%">
-            <col width="16%">
-            <col width="16%">
-        </colgroup>
-        <thead>
-          <!-- 상단 요일 표시 -->
+    <table>
+      <thead>
+        <!-- 상단 요일 표시 -->
+        <tr class="calendarRow">
           <template v-for="week in weeks" :key="week">
-            <th>
-              <p>{{ week }}</p>
+            <th class="text-center">
+              {{ week }}
             </th>
           </template>
-        </thead>
-        <!-- row 출력 -->
-        <tbody>
-          <template v-for="day in weekCol" :key="day">
-            <tr>
-              <template v-for="d in day" :key="d">
-                <td>
-                  {{ d }}
-                </td>
-              </template>
-            </tr>
-          </template>
-        </tbody>
-      </v-table>
-    </v-container>
+        </tr>
+      </thead>
+      <!-- row 출력 -->
+      <tbody>
+        <template v-for="day in weekCol" :key="day">
+          <tr class="calendarRow">
+            <template v-for="d in day" :key="d">
+              <td class="text-center" @click="openCalendarModal(d)">
+                {{ d }}
+              </td>
+            </template>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <v-dialog class="pa-5" v-model="dialog"
+      ><CalendarModal
+        :year="this.year"
+        :month="this.month"
+        :day="this.day"
+        @modalClose="closeCalendarModal"
+      ></CalendarModal>
+    </v-dialog>
   </div>
 </template>
 
 <script>
+import CalendarModal from "./CalendarModal.vue";
 export default {
+  components: {
+    CalendarModal,
+  },
   data() {
     return {
-      year: '',
-      month: '',
+      year: "",
+      month: "",
+      day: "",
       years: [2022, 2023],
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      weeks: ['일', '월', '화', '수', '목', '금', '토'],
-      weekRow: 0,
+      weeks: ["일", "월", "화", "수", "목", "금", "토"],
       weekCol: [],
+      dialog: false,
     };
   },
   mounted() {
@@ -65,8 +85,14 @@ export default {
     this.reloadCalendar();
   },
   methods: {
+    openCalendarModal(day) {
+      this.day = day;
+      this.dialog = true;
+    },
+    closeCalendarModal() {
+      this.dialog = false;
+    },
     reloadCalendar() {
-      this.weekRow = this.getWeeksInMonth(this.year, this.month);
       this.weekCol = this.getDaysInMonth(this.year, this.month);
     },
     nextMonth() {
@@ -75,6 +101,7 @@ export default {
         this.year += 1;
       }
       this.month = nextMonth;
+      this.reloadCalendar();
     },
     prevMonth() {
       var prevMonth = new Date(this.year, this.month - 2).getMonth() + 1;
@@ -82,13 +109,7 @@ export default {
         this.year -= 1;
       }
       this.month = prevMonth;
-    },
-    getWeeksInMonth(year, month) {
-      const firstDayOfMonth = new Date(year, month - 1, 1);
-      const lastDayOfMonth = new Date(year, month, 0);
-      const lastWeekOfMonth = lastDayOfMonth.getDay() === 0 ? lastDayOfMonth.getDate() / 7 : Math.floor(lastDayOfMonth.getDate() / 7) + 1;
-      const firstWeekOfMonth = firstDayOfMonth.getDay() === 0 ? 1 : 0;
-      return lastWeekOfMonth - firstWeekOfMonth + 1;
+      this.reloadCalendar();
     },
     getDaysInWeek(week, year, month) {
       const days = [];
@@ -103,17 +124,23 @@ export default {
     getDaysInMonth(year, month) {
       const firstDayOfMonth = new Date(year, month - 1, 1);
       const lastDayOfMonth = new Date(year, month, 0);
-      const firstWeekOfMonth = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
-      const lastWeekOfMonth = lastDayOfMonth.getDay() === 0 ? 7 : lastDayOfMonth.getDay();
-      
+      const firstWeekOfMonth =
+        firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
+      const lastWeekOfMonth =
+        lastDayOfMonth.getDay() === 0 ? 7 : lastDayOfMonth.getDay();
+
       const daysInWeek = [];
       const days = [];
-      
+
       // Push the days in month to the 'days' array
-      for (let i = 1 - firstWeekOfMonth; i <= lastDayOfMonth.getDate() + (6 - lastWeekOfMonth); i++) {
+      for (
+        let i = 1 - firstWeekOfMonth;
+        i <= lastDayOfMonth.getDate() + (6 - lastWeekOfMonth);
+        i++
+      ) {
         days.push(new Date(year, month - 1, i).getDate());
       }
-      
+
       // Group days by week
       for (let i = 0; i < days.length; i += 7) {
         daysInWeek.push(days.slice(i, i + 7));
@@ -125,5 +152,19 @@ export default {
 </script>
 
 <style>
+table {
+  margin: 0 auto;
+  display: grid;
+}
 
+.calendarRow {
+  display: grid;
+  height: 100px;
+  grid-template-columns: repeat(7, 1fr);
+}
+td,
+th {
+  border: 1px solid;
+}
 </style>
+
