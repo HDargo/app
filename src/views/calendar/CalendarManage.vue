@@ -111,23 +111,12 @@ export default {
       this.month = prevMonth;
       this.reloadCalendar();
     },
-    getDaysInWeek(week, year, month) {
-      const days = [];
-      const firstDayOfWeek = new Date(year, month - 1, week * 7);
-      for (let i = 0; i < 7; i++) {
-        const day = new Date(firstDayOfWeek);
-        day.setDate(day.getDate() + i);
-        days.push(day.getDate());
-      }
-      return days;
-    },
     getDaysInMonth(year, month) {
       const firstDayOfMonth = new Date(year, month - 1, 1);
       const lastDayOfMonth = new Date(year, month, 0);
       const firstWeekOfMonth =
         firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
-      const lastWeekOfMonth =
-        lastDayOfMonth.getDay() === 0 ? 7 : lastDayOfMonth.getDay();
+      const lastWeekOfMonth = lastDayOfMonth.getDay() === 0 ? 7 : lastDayOfMonth.getDay();
 
       const daysInWeek = [];
       const days = [];
@@ -151,7 +140,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 table {
   margin: 0 auto;
   display: grid;
@@ -167,4 +156,3 @@ th {
   border: 1px solid;
 }
 </style>
-
