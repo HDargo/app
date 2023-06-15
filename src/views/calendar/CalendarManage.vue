@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-sheet tile class="d-flex">
-      <v-btn icon class="ma-2" @click="prevMonth">
+      <v-btn icon class="ma-2" @click="prevYear">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
       <v-select
@@ -13,6 +13,12 @@
         label="연도"
         @update:model-value="reloadCalendar"
       ></v-select>
+      <v-btn icon class="ma-2" @click="nextYear">
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-btn>
+      <v-btn icon class="ma-2" @click="prevMonth">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
       <v-select
         v-model="month"
         :items="months"
@@ -26,7 +32,7 @@
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
     </v-sheet>
-    <table>
+    <table class="ma-12">
       <thead>
         <!-- 상단 요일 표시 -->
         <tr class="calendarRow">
@@ -42,8 +48,13 @@
         <template v-for="day in weekCol" :key="day">
           <tr class="calendarRow">
             <template v-for="d in day" :key="d">
-              <td class="text-center" @click="openCalendarModal(d)">
-                {{ d }}
+              <td class="text-center">
+                <div @click="openCalendarModal(d.year,d.month,d.day)">
+                  {{ d.day }}
+                </div>
+                <div>스케쥴1</div>
+                <div>스케쥴2</div>
+                <div>그 외...</div>
               </td>
             </template>
           </tr>
@@ -52,9 +63,9 @@
     </table>
     <v-dialog class="pa-5" v-model="dialog"
       ><CalendarModal
-        :year="this.year"
-        :month="this.month"
-        :day="this.day"
+        :year="this.dialogYear"
+        :month="this.dialogMonth"
+        :day="this.dialogDay"
         @modalClose="closeCalendarModal"
       ></CalendarModal>
     </v-dialog>
@@ -72,6 +83,9 @@ export default {
       year: "",
       month: "",
       day: "",
+      dialogYear: "",
+      dialogMonth: "",
+      dialogDay: "",
       years: [2022, 2023],
       months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       weeks: ["일", "월", "화", "수", "목", "금", "토"],
@@ -85,8 +99,10 @@ export default {
     this.reloadCalendar();
   },
   methods: {
-    openCalendarModal(day) {
-      this.day = day;
+    openCalendarModal(year,month,day) {
+      this.dialogYear = year;
+      this.dialogMonth = month;
+      this.dialogDay = day;
       this.dialog = true;
     },
     closeCalendarModal() {
@@ -94,6 +110,16 @@ export default {
     },
     reloadCalendar() {
       this.weekCol = this.getDaysInMonth(this.year, this.month);
+    },
+    nextYear() {
+      var nextYear = this.year + 1;
+      this.year = nextYear;
+      this.reloadCalendar();
+    },
+    prevYear() {
+      var prevYear = this.year - 1;
+      this.year = prevYear;
+      this.reloadCalendar();
     },
     nextMonth() {
       var nextMonth = new Date(this.year, this.month).getMonth() + 1;
@@ -120,14 +146,17 @@ export default {
 
       const daysInWeek = [];
       const days = [];
-
-      // Push the days in month to the 'days' array
       for (
         let i = 1 - firstWeekOfMonth;
         i <= lastDayOfMonth.getDate() + (6 - lastWeekOfMonth);
         i++
       ) {
-        days.push(new Date(year, month - 1, i).getDate());
+        var day = {
+          "year":new Date(year, month - 1, i).getFullYear(),
+          "month":(new Date(year, month - 1, i).getMonth() + 1),
+          "day":new Date(year, month - 1, i).getDate()
+        }
+        days.push(day);
       }
 
       // Group days by week
@@ -144,6 +173,7 @@ export default {
 table {
   margin: 0 auto;
   display: grid;
+  border-color: lightgray;
 }
 
 .calendarRow {
@@ -151,8 +181,15 @@ table {
   height: 100px;
   grid-template-columns: repeat(7, 1fr);
 }
+
 td,
 th {
   border: 1px solid;
+  border-color: lightgray;
+}
+
+td{
+  display: grid;
+  grid-template-rows: repeat(4,1fr);
 }
 </style>
