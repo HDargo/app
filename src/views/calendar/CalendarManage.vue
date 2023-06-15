@@ -35,7 +35,7 @@
     <table class="ma-12">
       <thead>
         <!-- 상단 요일 표시 -->
-        <tr class="calendarRow">
+        <tr class="calendarHeadRow">
           <template v-for="week in weeks" :key="week">
             <th class="text-center">
               {{ week }}
@@ -176,6 +176,10 @@ table {
   border-color: lightgray;
 }
 
+.calendarHeadRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
 .calendarRow {
   display: grid;
   height: 100px;
