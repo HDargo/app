@@ -12,15 +12,6 @@
         </template>
       </v-list>
     </v-card>
-    <v-data-table
-      :headers="headers"
-      :items="boardList"
-      :items-per-page="10"
-      hover
-      class="elevation-1"
-      @click:row="rowClick"
-    >
-    </v-data-table>
   </div>
 </template>
 <script>

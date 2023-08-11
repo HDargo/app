@@ -8,12 +8,7 @@ import { createVuetify } from 'vuetify'
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   components: {
-    VDataTable,
   },
   defaults: {
-    VDataTable: {
-      fixedHeader: true,
-      noDataText: 'Results not found',
-    },
   },
 })

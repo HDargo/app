@@ -39,7 +39,7 @@
                     <v-card>
                         <v-list class="pa=5">
                             <v-list-subheader>YesterDay</v-list-subheader>
-                            <v-list-item v-for="(n) in 100" :key="n">
+                            <v-list-item v-for="(n) in 10" :key="n">
                                 <v-list-item-title>Title</v-list-item-title>
                                 <v-list-item-subtitle>subTitle</v-list-item-subtitle>
                             </v-list-item>

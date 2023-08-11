@@ -1,5 +1,4 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import ListPage from '@/views/ListPage.vue'
 import MyAccount from '@/views/account/MyAccount.vue'
 import LoginPage from '@/views/account/LoginPage.vue'
 import RegistPage from '@/views/account/RegistPage.vue'
@@ -11,7 +10,7 @@ import CalendarManage from '@/views/calendar/CalendarManage.vue'
 import BoardPage from '@/views/bbs/BoardPage.vue'
 import store from '@/store/store';
 
-const requireAuth = () => (to: any, from: any, next: (arg0: string | undefined) => void) => {
+const requireAuth = () => (to: any, from: any, next: (arg0: string) => void) => {
     if (store.getters.getLoggin) {
       return next('/');
     }
@@ -23,10 +22,6 @@ const routes = [
         path: '/',
         name: 'Index',
         component : IndexPage
-    },{
-        path: '/list',
-        name: 'List',
-        component: ListPage
     },{
         path: '/MyAccount',
         name: 'My Account',
