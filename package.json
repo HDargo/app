@@ -13,9 +13,11 @@
     "chartjs": "^0.3.24",
     "core-js": "^3.32.0",
     "roboto-fontface": "*",
+    "typescript": "^5.1.6",
     "vue": "^3.3.4",
     "vue-chart": "^2.0.0",
     "vue-chartjs": "^5.2.0",
+    "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.2.4",
     "vuetify": "^3.3.12",
     "vuex": "^4.1.0",
@@ -26,11 +28,16 @@
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/eslint-parser": "^7.22.10",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.8",
+    "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^8.46.0",
     "eslint-plugin-vue": "^9.17.0",
+    "typescript": "~4.5.5",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "webpack-plugin-vuetify": "^2.0.1"
   },
@@ -41,10 +48,11 @@
     },
     "extends": [
       "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/typescript"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@typescript-eslint/parser"
     },
     "rules": {}
   },

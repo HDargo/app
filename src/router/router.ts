@@ -1,20 +1,19 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import ListPage from '@/views/ListPage'
-import MyAccount from '@/views/account/MyAccount'
-import LoginPage from '@/views/account/LoginPage'
-import RegistPage from '@/views/account/RegistPage'
-import IndexPage from '@/views/IndexPage'
-import ChartPage from '@/views/ChartPage';
-import BoardListPage from '@/views/bbs/BoardListPage'
+import ListPage from '@/views/ListPage.vue'
+import MyAccount from '@/views/account/MyAccount.vue'
+import LoginPage from '@/views/account/LoginPage.vue'
+import RegistPage from '@/views/account/RegistPage.vue'
+import IndexPage from '@/views/IndexPage.vue'
+import BoardListPage from '@/views/bbs/BoardListPage.vue'
 import Mailbox from '@/views/mailbox/MailBoxPage.vue'
 import NoteList from '@/views/note/NoteListPage.vue'
 import CalendarManage from '@/views/calendar/CalendarManage.vue'
-import BoardPage from '@/views/bbs/BoardPage'
+import BoardPage from '@/views/bbs/BoardPage.vue'
 import store from '@/store/store';
 
-const requireAuth = () => (to, from, next) => {
+const requireAuth = () => (to: any, from: any, next: (arg0: string | undefined) => void) => {
     if (store.getters.getLoggin) {
-      return next();
+      return next('/');
     }
     next('/login');
 };
@@ -41,10 +40,6 @@ const routes = [
         path: '/regist',
         name: 'Regist',
         component: RegistPage
-    },{
-        path: '/chart',
-        name: 'Chart',
-        component: ChartPage
     },{
         path: '/boardList',
         name: 'BoardList',

@@ -9,27 +9,27 @@ export const userState = {
         Desciption:'Descrrrrrr'
     },
     getters: {
-        getLoggin: state => state.isLoggedIn,
-        getProfileImage: state => state.profileImage,
-        getNickname: state => state.Nickname,
-        getEmail: state => state.Email,
-        getDesciption: state => state.Desciption
+        getLoggin: (state: { isLoggedIn: any; }) => state.isLoggedIn,
+        getProfileImage: (state: { profileImage: any; }) => state.profileImage,
+        getNickname: (state: { Nickname: any; }) => state.Nickname,
+        getEmail: (state: { Email: any; }) => state.Email,
+        getDesciption: (state: { Desciption: any; }) => state.Desciption
     },
     mutations: {
-        doLogin: state => {
+        doLogin: (state: { profileImage: any; isLoggedIn: boolean; }) => {
             state.profileImage = require('@/assets/logo.png')
             state.isLoggedIn = true;
             console.log('mutation do login');
         },
-        doLogout: state => {
+        doLogout: (state: { isLoggedIn: boolean; }) => {
             state.isLoggedIn = false;
             console.log('mutation do logout');
         },
-        doRegist: state => {
+        doRegist: (state: { isLoggedIn: boolean; }) => {
             state.isLoggedIn = true;
             console.log('mutation do regist');
         },
-        changeProfile: (state, profileData) => {
+        changeProfile: (state: { profileImage: null; }, profileData: { [x: string]: any; }) => {
             if(state.profileImage != null){
                 state.profileImage = profileData['profileImage'];
             console.log('mutation change profile');
