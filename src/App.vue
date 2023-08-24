@@ -31,8 +31,8 @@
 
             <v-list v-if="login" density="comfortable" nav>
               <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/"></v-list-item>
-              <v-list-item prepend-icon="mdi-bulletin-board" title="boardList" value="BoardList" to="/boardList"></v-list-item>
-              <v-list-item prepend-icon="mdi-note-text-outline" title="NoteList" value="noteList" to="/noteList"></v-list-item>
+              <v-list-item prepend-icon="mdi-bulletin-board" title="NoteList" value="noteList" to="/noteList"></v-list-item>
+              <v-list-item prepend-icon="mdi-note-text-outline" title="boardList" value="BoardList" to="/boardList"></v-list-item>
               <v-list-item prepend-icon="mdi-mailbox" title="Mailbox" value="mailbox" to="/mailbox"></v-list-item>
               <v-list-item prepend-icon="mdi-view-list" title="Calendar" value="calendar" to="/calendar"></v-list-item>
               <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/MyAccount"></v-list-item>

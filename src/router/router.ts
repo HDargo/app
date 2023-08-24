@@ -10,9 +10,9 @@ import CalendarManage from '@/views/calendar/CalendarManage.vue'
 import BoardPage from '@/views/bbs/BoardPage.vue'
 import store from '@/store/store';
 
-const requireAuth = () => (to: any, from: any, next: (arg0: string) => void) => {
+const requireAuth = () => (to: any, from: any, next: any) => {
     if (store.getters.getLoggin) {
-      return next('/');
+      return next();
     }
     next('/login');
 };
