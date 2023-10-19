@@ -10,8 +10,11 @@
     </v-card>
 </template>
 <script>
+
 export default{
     name: 'IndexPage',
+    setup(){
+    },
     data() {
         return {
             
